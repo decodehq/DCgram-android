@@ -72,10 +72,12 @@ public abstract class AbstractInteractor implements Interactor {
         mIsRunning = false;
     }
 
+    @Override
     public boolean isRunning() {
         return mIsRunning;
     }
 
+    @Override
     public void onFinished() {
         mIsRunning = false;
         mIsCanceled = false;

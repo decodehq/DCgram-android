@@ -10,10 +10,6 @@ import javax.inject.Inject;
 
 import timber.log.Timber;
 
-/**
- * Created by root on 06.12.16..
- */
-
 public class MainPresenterImpl extends AbstractPresenter implements MainPresenter {
 
     private View view;
@@ -31,9 +27,9 @@ public class MainPresenterImpl extends AbstractPresenter implements MainPresente
 
     @Override
     public void getHelloText() {
-        if( ! isMessageInteractorRunning) {
-            isMessageInteractorRunning = true;
-            getMessageInteractor.execute(new MessageSubscriber());
+        if( ! getMessageInteractor.isRunning()) {
+//            isMessageInteractorRunning = true;
+            getMessageInteractor.execute(new MessageSubscriber(getMessageInteractor));
         }
     }
 
@@ -63,15 +59,19 @@ public class MainPresenterImpl extends AbstractPresenter implements MainPresente
 
     private final class MessageSubscriber extends DefaultSubscriber<String> {
 
+        public MessageSubscriber(Interactor interactor) {
+            super(interactor);
+        }
+
         @Override public void onCompleted() {
+            super.onCompleted();
             Timber.d("onCompleted");
-            isMessageInteractorRunning = false;
             MainPresenterImpl.this.hideProgress();
         }
 
         @Override public void onError(Throwable e) {
+            super.onError(e);
             Timber.d("onError: " + e);
-            isMessageInteractorRunning = false;
             MainPresenterImpl.this.hideProgress();
             MainPresenterImpl.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
         }

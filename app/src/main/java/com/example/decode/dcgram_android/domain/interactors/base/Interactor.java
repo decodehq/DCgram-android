@@ -15,4 +15,8 @@ public interface Interactor {
     void execute(Subscriber UseCaseSubscriber);
 
     void unsubscribe();
+
+    void onFinished();
+
+    boolean isRunning();
 }
