@@ -8,5 +8,4 @@ import rx.Observable;
 
 public interface Repository {
 
-    Observable<String> getMessage();
 }
