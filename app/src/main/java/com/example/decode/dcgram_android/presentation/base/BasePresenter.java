@@ -1,5 +1,7 @@
 package com.example.decode.dcgram_android.presentation.base;
 
+import com.example.decode.dcgram_android.domain.exceptions.ErrorBundle;
+
 /**
  * Created by goran on 05.12.16..
  *
@@ -35,5 +37,5 @@ public interface BasePresenter {
     /**
      * Method that should signal the appropriate view to show the appropriate error with the provided message.
      */
-    void onError(String message);
+    void showErrorMessage(ErrorBundle errorBundle);
 }

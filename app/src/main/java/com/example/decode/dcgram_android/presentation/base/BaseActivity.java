@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.example.decode.dcgram_android.AndroidApplication;
+import com.example.decode.dcgram_android.R;
+import com.example.decode.dcgram_android.dependecy_injection.components.ApplicationComponent;
 import com.example.decode.dcgram_android.presentation.base.BaseView;
 import com.example.decode.dcgram_android.presentation.navigation.ActivityNavigator;
 
@@ -18,15 +21,19 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     public ProgressDialog progressDialog;
 
-    @Inject ActivityNavigator navigator;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResId());
         ButterKnife.bind(this);
+
+        ApplicationComponent appComponent = ((AndroidApplication) getApplication()).getApplicationComponent();
+        appComponent.inject(this);
     }
 
+    protected void getNavigator() {
+        ((AndroidApplication) getApplication()).getActivityNavigator();
+    }
     protected abstract int getLayoutResId();
 
     public void showProgressDialog() {

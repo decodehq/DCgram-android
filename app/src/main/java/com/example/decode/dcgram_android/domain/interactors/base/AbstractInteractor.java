@@ -24,6 +24,9 @@ public abstract class AbstractInteractor implements Interactor {
     private final ThreadExecutor threadExecutor;
     private final PostExecutionThread postExecutionThread;
 
+    protected volatile boolean mIsCanceled;
+    protected volatile boolean mIsRunning;
+
     private Subscription subscription = Subscriptions.empty();
 
     protected AbstractInteractor(ThreadExecutor threadExecutor,
@@ -44,7 +47,10 @@ public abstract class AbstractInteractor implements Interactor {
      * with {@link #buildUseCaseObservable()}.
      */
     @SuppressWarnings("unchecked")
+    @Override
     public void execute(Subscriber UseCaseSubscriber) {
+        this.mIsRunning = true;
+
         this.subscription = Observable.defer(this::buildUseCaseObservable) //this.buildUseCaseObservable()
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.getScheduler())
@@ -54,9 +60,24 @@ public abstract class AbstractInteractor implements Interactor {
     /**
      * Unsubscribes from current {@link rx.Subscription}.
      */
+    @Override
     public void unsubscribe() {
         if (!subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }
+    }
+
+    public void cancel() {
+        mIsCanceled = true;
+        mIsRunning = false;
+    }
+
+    public boolean isRunning() {
+        return mIsRunning;
+    }
+
+    public void onFinished() {
+        mIsRunning = false;
+        mIsCanceled = false;
     }
 }

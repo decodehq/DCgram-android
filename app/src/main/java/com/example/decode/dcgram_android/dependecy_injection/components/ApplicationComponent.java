@@ -2,6 +2,7 @@ package com.example.decode.dcgram_android.dependecy_injection.components;
 
 import android.content.Context;
 
+import com.example.decode.dcgram_android.AndroidApplication;
 import com.example.decode.dcgram_android.dependecy_injection.modules.ApplicationModule;
 import com.example.decode.dcgram_android.domain.executor.PostExecutionThread;
 import com.example.decode.dcgram_android.domain.executor.ThreadExecutor;

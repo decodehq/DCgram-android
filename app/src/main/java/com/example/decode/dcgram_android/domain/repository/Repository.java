@@ -1,16 +1,12 @@
 package com.example.decode.dcgram_android.domain.repository;
 
+import rx.Observable;
+
 /**
  * Created by root on 06.12.16..
  */
 
-public interface Repository<T> {
+public interface Repository {
 
-    boolean insert(T model);
-
-    boolean update(T model);
-
-    T get(Object id);
-
-    boolean delete(T model);
+    Observable<String> getMessage();
 }

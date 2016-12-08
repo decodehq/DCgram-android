@@ -1,5 +1,7 @@
 package com.example.decode.dcgram_android.presentation.base;
 
+import android.content.Context;
+
 /**
  * Created by root on 05.12.16..
  */
@@ -23,4 +25,6 @@ public interface BaseView {
      * @param message The error message to be displayed.
      */
     void showError(String message);
+
+    Context getContext();
 }

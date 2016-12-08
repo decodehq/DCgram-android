@@ -10,7 +10,10 @@
     tools:context="com.example.decode.dcgram_android.presentation.ui.activities.MainActivity">
 
     <TextView
+        android:id="@+id/helloText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="20sp"
         android:text="Hello World!" />
 </RelativeLayout>
