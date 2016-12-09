@@ -4,6 +4,10 @@ apply plugin: 'me.tatarka.retrolambda'
 //./gradlew findbugs
 apply from: "${project.rootDir}/QA/quality.gradle"
 
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
@@ -18,8 +22,8 @@ android {
         applicationId "com.example.decode.dcgram_android"
         minSdkVersion 18
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode versionMajor * 100000 + versionMinor * 1000 + versionPatch
+        versionName "${versionMajor}.${versionMinor}" + ((versionPatch != 0) ? ".${versionPatch}" : "")
     }
     buildTypes {
         release {
