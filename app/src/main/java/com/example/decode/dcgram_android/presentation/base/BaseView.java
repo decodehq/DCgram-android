@@ -26,5 +26,9 @@ public interface BaseView {
      */
     void showError(String message);
 
+    void showToastMessage(String message);
+
+    void showSignUpScreen();
+
     Context getContext();
 }

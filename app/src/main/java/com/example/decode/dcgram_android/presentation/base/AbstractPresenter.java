@@ -24,6 +24,9 @@ public abstract class AbstractPresenter implements BasePresenter {
     }
 
     @Override
+    public void showMessage(String message) { baseView.showToastMessage(message);}
+
+    @Override
     public void showErrorMessage(ErrorBundle errorBundle) {
         String errorMessage = ErrorMessageFactory.create(this.baseView.getContext(),
                 errorBundle.getException());

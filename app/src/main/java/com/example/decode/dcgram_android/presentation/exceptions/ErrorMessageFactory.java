@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.decode.dcgram_android.R;
 import com.example.decode.dcgram_android.data.exceptions.NetworkConnectionException;
+import com.example.decode.dcgram_android.data.exceptions.NoUserException;
 
 /**
  * Created by root on 06.12.16..
@@ -27,6 +28,9 @@ public class ErrorMessageFactory {
 
         if (exception instanceof NetworkConnectionException) {
             message = context.getString(R.string.exception_message_no_connection);
+        }
+        if (exception instanceof NoUserException) {
+            message = context.getString(R.string.exception_message_no_user);
         }
 
         return message;

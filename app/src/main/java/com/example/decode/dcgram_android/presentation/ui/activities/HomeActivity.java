@@ -2,35 +2,40 @@ package com.example.decode.dcgram_android.presentation.ui.activities;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.widget.TextView;
 
-import com.example.decode.dcgram_android.AndroidApplication;
 import com.example.decode.dcgram_android.R;
-import com.example.decode.dcgram_android.dependecy_injection.components.ApplicationComponent;
 import com.example.decode.dcgram_android.presentation.base.BaseActivity;
+import com.example.decode.dcgram_android.presentation.presenters.HomePresenter;
+import com.example.decode.dcgram_android.presentation.presenters.impl.HomePresenterImpl;
 
-import butterknife.BindView;
+import javax.inject.Inject;
 
-public class MainActivity extends BaseActivity{
+import timber.log.Timber;
 
-    @BindView(R.id.helloText)
-    TextView helloText;
+/**
+ * Created by goran on 14.12.16..
+ */
+
+public class HomeActivity extends BaseActivity implements HomePresenter.View {
+
+    @Inject
+    HomePresenterImpl homePresenter;
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_main;
+        return R.layout.activity_home;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ApplicationComponent appComponent = ((AndroidApplication) getApplication()).getApplicationComponent();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        Timber.d("onResume");
     }
 
     @Override

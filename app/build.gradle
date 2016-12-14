@@ -17,7 +17,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    signingConfigs {
+        debug {
+            println "${System.properties['user.home']}${File.separator}.android${File.separator}debug.keystore"
+            println "home: ${File.separator}home${File.separator}goran${File.separator}.android${File.separator}debug.keystore"
 
+            //"${System.properties['user.home']}${File.separator}.android${File.separator}releaseKeystore.jks"
+            //${System.properties['user.home']}${File.separator}.android${File.separator}debug.keystore'
+            storeFile "${System.properties['user.home']}${File.separator}.android${File.separator}debug.keystore" as File
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+        }
+    }
     defaultConfig {
         applicationId "com.example.decode.dcgram_android"
         minSdkVersion 18
@@ -26,6 +38,12 @@ android {
         versionName "${versionMajor}.${versionMinor}" + ((versionPatch != 0) ? ".${versionPatch}" : "")
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.debug
+
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -40,6 +58,7 @@ dependencies {
     compile 'com.android.support:support-v4:25.0.1'
     compile "com.android.support:design:25.0.1"
     compile 'com.android.support:recyclerview-v7:25.0.1'
+    compile 'com.google.android.gms:play-services-auth:10.0.1'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
     // Butterknife view dependency injection
@@ -70,4 +89,11 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
+
+    //firebase
+    compile 'com.google.firebase:firebase-core:10.0.1'
+    compile 'com.google.firebase:firebase-auth:10.0.1'
+
 }
+
+apply plugin: 'com.google.gms.google-services'

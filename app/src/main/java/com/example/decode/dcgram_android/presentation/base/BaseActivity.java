@@ -27,12 +27,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         setContentView(getLayoutResId());
         ButterKnife.bind(this);
 
-        ApplicationComponent appComponent = ((AndroidApplication) getApplication()).getApplicationComponent();
-        appComponent.inject(this);
+//        ApplicationComponent appComponent = ((AndroidApplication) getApplication()).getApplicationComponent();
+//        appComponent.inject(this);
     }
 
-    protected void getNavigator() {
-        ((AndroidApplication) getApplication()).getActivityNavigator();
+    protected ActivityNavigator getNavigator() {
+        return ((AndroidApplication) getApplication()).getActivityNavigator();
     }
     protected abstract int getLayoutResId();
 
@@ -66,8 +66,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         }
     }
 
+    @Override
     public void showToastMessage(String message) {
         Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showSignUpScreen() {
+        getNavigator().goToSignUp(this);
     }
 
     @Override

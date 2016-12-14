@@ -1,5 +1,7 @@
 package com.example.decode.dcgram_android.domain.interactors.base;
 
+import timber.log.Timber;
+
 /**
  * Default subscriber base class to be used whenever you want default error handling.
  */
@@ -25,6 +27,7 @@ public class DefaultSubscriber<T> extends rx.Subscriber<T> {
      * ALWAYS IMPLEMENT SUPER IN CHILD CLASS!!!!
      */
     @Override public void onError(Throwable e) {
+        Timber.d("onError: " + e);
         if(interactor != null) {
             interactor.onFinished();
         }

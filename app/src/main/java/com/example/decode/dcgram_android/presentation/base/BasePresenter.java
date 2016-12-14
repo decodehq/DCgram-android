@@ -35,6 +35,11 @@ public interface BasePresenter {
 
 
     /**
+     * Method that should signal the appropriate view to show the appropriate message.
+     */
+    void showMessage(String message);
+
+    /**
      * Method that should signal the appropriate view to show the appropriate error with the provided message.
      */
     void showErrorMessage(ErrorBundle errorBundle);

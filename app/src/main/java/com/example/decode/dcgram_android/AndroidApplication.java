@@ -17,7 +17,9 @@ import timber.log.Timber;
 public class AndroidApplication extends Application {
 
     private ApplicationComponent applicationComponent;
-    @Inject ActivityNavigator navigator;
+
+    @Inject
+    ActivityNavigator navigator;
 
     @Override
     public void onCreate() {
@@ -31,6 +33,7 @@ public class AndroidApplication extends Application {
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
+        applicationComponent.inject(this);
     }
 
     public ApplicationComponent getApplicationComponent() {
