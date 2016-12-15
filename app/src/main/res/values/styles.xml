@@ -1,11 +1,23 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Bottom tabs -->
+    <style name="BottomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/bottom_tabs_indicator_color</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabBackground">@drawable/bottom_bar_selector</item>
+        <item name="tabTextAppearance">@style/BottomCustomTabText</item>
+    </style>
+
+    <style name="BottomCustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
     </style>
 
 </resources>

@@ -26,7 +26,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import timber.log.Timber;
 
-public class SignInActivity extends BaseActivity implements SignInPresenter.View, View.OnClickListener {
+public class SignInActivity extends ToolbarActivity implements SignInPresenter.View, View.OnClickListener {
 
     @BindView(R.id.sign_in_button)
     public SignInButton signInButton;
@@ -125,5 +125,10 @@ public class SignInActivity extends BaseActivity implements SignInPresenter.View
                 .applicationComponent(appComponent)
                 .build();
         signUpComponent.inject(this);
+    }
+
+    @Override
+    protected String getToolbarTitle() {
+        return getString(R.string.login_title);
     }
 }

@@ -36,5 +36,3 @@ build/
 obj/
 
 /app/google-services.json
-
-/images_icons/*

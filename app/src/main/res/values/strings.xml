@@ -9,4 +9,10 @@
 
     <!-- Login screen -->
     <string name="google_login_failed">Google login failed.</string>
+    <string name="login_title">Sign up</string>
+
+    <!-- Home screen -->
+    <string name="home_title">Feed</string>
+
+
 </resources>
